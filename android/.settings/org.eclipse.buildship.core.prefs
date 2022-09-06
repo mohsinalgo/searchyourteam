@@ -1,0 +1,13 @@
+arguments=--init-script /var/folders/hp/cftxyqg16y36j2g_79zgcjc00000gp/T/init14981234968456388124.gradle --init-script /var/folders/hp/cftxyqg16y36j2g_79zgcjc00000gp/T/init15449647175473759120.gradle
+auto.sync=false
+build.scans.enabled=false
+connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
+connection.project.dir=
+eclipse.preferences.version=1
+gradle.user.home=
+java.home=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+jvm.arguments=
+offline.mode=false
+override.workspace.settings=true
+show.console.view=true
+show.executions.view=true
