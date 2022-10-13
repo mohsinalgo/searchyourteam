@@ -81,37 +81,7 @@ const AuthleteSoccer = ({ navigation, route }, props) => {
 
         navigation.navigate('TabScreen', { accountType: route.params.accountType })
     }
-    const renderItem = ({ item, index }) => {
-        return (
-            <TouchableOpacity activeOpacity={0.5} style={{ alignSelf: 'center', width: '80%', flexDirection: 'row', justifyContent: 'space-around', borderBottomColor: '#EDEDED', borderBottomWidth: 1, paddingBottom: 10, marginTop: 18, }}>
-                <View style={{ width: '50%', alignItems: 'flex-start' }}>
-                    {item.id == 1 ? <TouchableOpacity
-                        style={{ position: 'absolute', left: -28, backgroundColor: Colors.primaryColor, borderRadius: 10, padding: 3 }}>
-                        <Icon color={"#fff"} name="plus" size={14} />
-                    </TouchableOpacity> : null}
-                    <Text style={styles.titles}>{item.title1}</Text>
-                    <Text style={styles.titles}>{item.title2}</Text>
-                    <Text style={styles.titles}>{item.year}</Text>
-                    <Text style={styles.titles}>{item.lw}</Text>
-                </View>
-                <View style={{ width: '25%', alignItems: 'center' }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <View style={{ width: 10, height: 18, backgroundColor: 'red', borderColor: '#707070', borderWidth: 1 }}></View>
-                        <Text style={{ marginLeft: 5 }}>{item.point1}</Text>
-                    </View>
-                    <Text style={[styles.titles, { marginTop: 30 }]}>{item.follows}</Text>
-                </View>
-                <View style={{ width: '25%', alignItems: 'flex-end' }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <View style={{ width: 10, height: 18, backgroundColor: 'yellow', borderColor: '#707070', borderWidth: 1 }}></View>
-                        <Text style={{ marginLeft: 5 }}>{item.point2}</Text>
-                    </View>
 
-                </View>
-
-            </TouchableOpacity>
-        )
-    }
 
     return (
         <ScrollView style={{ backgroundColor: "#FFF" }}  >
@@ -122,15 +92,9 @@ const AuthleteSoccer = ({ navigation, route }, props) => {
                 </View>
             </ImageBackground>
             <View style={styles.input} >
-                <View style={{ marginTop: 15, width: "90%" }} >
-                    <Input placeholder="Where are/were you playing?" onChange={(value) => setWherePlaying(value)} />
-                </View>
+              
 
-                <FlatList
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                />
+             
                 <View style={{
                     backgroundColor: '#fff',
                     width: '90%', alignItems: 'center', borderRadius: 20, marginTop: 30, paddingBottom: 20,
@@ -176,16 +140,10 @@ const AuthleteSoccer = ({ navigation, route }, props) => {
                         <Input placeholder="Weight" onChange={(value) => setWherePlaying(value)} />
                     </View>
 
-                    <TouchableOpacity style={{ backgroundColor: Colors.primaryColor, borderRadius: 20, width: '80%', marginTop: 40, paddingVertical: 20 }}>
-                        <Text style={{ color: '#fff', alignSelf: 'center' }}>Add</Text>
-                    </TouchableOpacity>
-
-
+                  
                 </View>
 
-                <View style={{ marginTop: 35, width: "70%", marginBottom: 35 }} >
-                    <Input placeholder="Main leg" onChange={(value) => setWherePlaying(value)} />
-                </View>
+            
 
 
 

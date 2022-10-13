@@ -1,36 +1,61 @@
-import React,{useState} from "react";
-import { Text, TouchableOpacity, Image, View, StyleSheet, ImageBackground, ScrollView, StatusBar } from 'react-native'
+import React, { useState } from "react";
+import { Text, TouchableOpacity, Image, View, StyleSheet,ActivityIndicator, ImageBackground, ScrollView, StatusBar } from 'react-native'
 import AppButton from "../components/AppButton";
 import Input from "../components/Input";
 import { addPost } from "../redux/actions/postAction";
 import { Colors } from "../utils/Constants";
+import { useDispatch, useSelector } from 'react-redux'
+import { emailValidation } from "../redux/actions";
 const Signup1 = ({ navigation }) => {
+
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [validator, setValidator] = useState(false)
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState('');
-    emailValidate = (email) => {
+
+   const emailValidate = (email) => {
         console.log(email);
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
         if (reg.test(email) === false) {
-        //   alert("Email is Not Correct");
-          setValidator(false)
-          setEmail(email)
-          return false;
+            //   alert("Email is Not Correct");
+            setValidator(false)
+            setEmail(email)
+            return false;
         }
         else {
-          setEmail(email)
-          setValidator(true)
-        //   alert("Email is Correct");
+            setEmail(email)
+            setValidator(true)
+            //   alert("Email is Correct");
         }
-      }
+    }
     const passwordCheck = () => {
-        // {
-        //   email!=''? validator? password.length > 5 ? password == confirmPassword ?
-        //         navigation.navigate('Signup2', { email: email, password: password })
-        //         : alert(`Password didn't match`) : alert('Password length must greater than 6'):alert("Please enter a valid email address"):alert('Please enter a email address')
-        // }
-        navigation.navigate("Signup2",{email:'demo123@gmail.com',password:'admin123'})
+        {
+            email != '' ? validator ? password.length > 5 ? password == confirmPassword ?
+                _signupProcess()
+                : alert(`Password didn't match`) : alert('Password length must greater than 6') : alert("Please enter a valid email address") : alert('Please enter a email address')
+        }
+        // navigation.navigate("Signup2",{email:'demo123@gmail.com',password:'admin123'})
+    }
+
+    function _signupProcess() {
+        setLoading(true)
+        dispatch(emailValidation(email))
+        .then((res) => {
+            console.log('sgn upp', res)
+            if(res.message == "Email already exists"){
+                alert('Email already exists Please Retry wth another email')
+            }else{
+                alert('success')
+                navigation.navigate('Signup2', { email: email, password: password })
+            }
+            setLoading(false)
+        }).catch((err) => {
+            console.log(err.errors)
+            setLoading(false)
+        })
+        // navigation.navigate('Signup2', { email: email, password: password })
     }
     return (
         <ScrollView style={{ backgroundColor: "#FFF" }}  >
@@ -53,7 +78,14 @@ const Signup1 = ({ navigation }) => {
                     <Input secureTextEntry={true} placeholder="ConfirmPassword" onChange={(value) => setConfirmPassword(value)} />
                 </View>
                 <View style={{ marginTop: 15, width: "100%" }} >
-                    <AppButton title="Continue" onPress={() => passwordCheck()} />
+                    {/* <AppButton title="Continue" onPress={() => passwordCheck()} /> */}
+                    <TouchableOpacity disabled={loading} onPress={() => passwordCheck()} style={{ width: "100%", alignItems: "center", borderRadius: 30, paddingHorizontal: 10, paddingVertical: 15, backgroundColor: Colors.primaryColor }}  >
+                        {loading ? <ActivityIndicator color={'#fff'} /> :
+                            <Text style={{ color: "#FFF", }} >
+                                Login
+                            </Text>
+                        }
+                    </TouchableOpacity>
                 </View>
 
                 <View style={{ marginTop: 30, width: "80%", flexDirection: "row", alignItems: "center", justifyContent: "space-around" }} >

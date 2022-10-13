@@ -1218,6 +1218,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.1.12.tgz#279ff7bbe487af92ad95ec758a029a54569e2a62"
   integrity sha512-CiuLZ2orueBiWHYxfaJF57jQY6HY2Q3z5pdAE4MKH8EqIImr/jgDJrJ/UxOVZHK1Ng9P+XlGIKfVIcuWZ6guuA==
 
+"@react-native-picker/picker@^2.4.7":
+  version "2.4.7"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-2.4.7.tgz#7b7c2d3fe537cd82ed67c9c7f26039553e194c16"
+  integrity sha512-SZewIUpkHIA1VzDdetXLpZUfwVOR4p+CRGguo8dGt/33nh9Bhkpt0Ke6KazZ6agbDGyBjlVEAqzkcLXoRBwOJQ==
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"

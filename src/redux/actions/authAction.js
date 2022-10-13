@@ -59,36 +59,70 @@ export const userRegister = (username, email, password, fullName, dob, accountTy
   }
 }
 
-export const userLogin = (email, password,cb) => {
-  return dispatch => {
-    dispatch({
-      type: LOGIN_USER_REQ,
-      data: {},
-    });
-    return axios.post(
-        BASE_URL+'api/auth/login',
-        {
-          "email": email,
-          "password": password
-        }).then((res) => {
-          cb()
-          // AsyncStorageLib.setItem("email",res.data.email)
-          alert("Login Successfull")
-          console.log("Auth",res.data);
-          dispatch({
-            type: LOGIN_USER_SUCCESS,
-            data: res.data,
-          });
-        }).catch((er)=>{
-          dispatch({
-            type: LOGIN_USER_FAILURE,
-            data: {},
-          });
-          alert('Something went wrong please again')
-         console.log("login-->> ", er);
-        })
-  }
+export const userLogin = (email, password) => (dispatch) => {
+
+  
+  let formData = new FormData();
+
+  formData.append('email', email);
+  formData.append('password', password);
+
+  return axios({
+    method: 'POST',
+    url: BASE_URL+'auth/login',
+    data: formData,
+  }).then((response) => {
+    console.log('responseee', response.data);
+    // console.log(JSON.stringify(response.data))
+
+    return response
+
+  }).catch((error) => {
+    console.log('bhbhbhbhbhbhbhbhb', error);
+  });
 }
+
+export const emailValidation = (email) => (dispatch) => {
+
+  
+  let formData = new FormData();
+
+  formData.append('email', email);
+
+  return axios({
+    method: 'POST',
+    url: BASE_URL+'auth/validateEmail',
+    data: formData,
+  }).then((response) => {
+    console.log('responseee', response.data);
+    // console.log(JSON.stringify(response.data))
+
+    return response
+
+  }).catch((error) => {
+    if (error.response) {
+      console.log('111',error.response.data.errors[0])
+      return error.response.data.errors[0]
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      // console.log(error.response.data);
+      // console.log(error.response.status);
+      // console.log(error.response.headers);
+  } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the 
+      // browser and an instance of
+      // http.ClientRequest in node.js
+      console.log('22',error.request);
+  } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+  }
+  console.log('confg',error.config);
+  });
+}
+
+
 export const forgotPassword = (email,cb) => {
   return dispatch => {
     dispatch({

@@ -31,19 +31,21 @@ const Signup3 = ({ navigation, route }, props) => {
         });
     }
     const registration = () => {
-        // {
-        //     username && fullname && dob ? dispatch(userRegister(
-        //         username,
-        //         route.params.email,
-        //         route.params.password,
-        //         fullname,
-        //         dob,
-        //         route.params.accountType,
-        //         () => navigation.navigate('TabScreen')
-        //     )) : alert('Please enter all the required fields')
-        // }
+        {
+            username && fullname && dob ? 
+            // dispatch(userRegister(
+                navigation.navigate('AuthleteSoccer', { email: route.params.email, password: route.params.password, accountType: route.params.accountType,username:username,fullname:fullname,dob:dob,username:username, })
+                // username,
+                // route.params.email,
+                // route.params.password,
+                // fullname,
+                // dob,
+                // route.params.accountType,
+                // () => navigation.navigate('TabScreen')
+            : alert('Please enter all the required fields')
+        }
 
-        navigation.navigate('AuthleteSoccer',{accountType:route.params.accountType})
+        // navigation.navigate('AuthleteSoccer',{accountType:route.params.accountType})
     }
 
     return (

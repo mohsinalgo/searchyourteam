@@ -1,4 +1,4 @@
-export const BASE_URL = "https://search-your-team.herokuapp.com/";
+export const BASE_URL = "https://ans-proj.herokuapp.com/api/";
 
 export const Colors={
 primaryColor:"#7EAA7C", 
